@@ -3,7 +3,7 @@
  * EA076 - Projeto 1: Semáforo
  *
  * Isabella Bigatto   	 138537
- * Júlia Dias   		 156019
+ * Júlia Dias   	156019
  *
  * Implementação de um conjunto de semáforos, um para carros e outro para pedestres, que funcionam
  * com o auxílio de um botão e um LDR.
