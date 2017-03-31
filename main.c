@@ -37,7 +37,7 @@
 #include "IO_Map.h"
 
 int LED_GREEN_CAR, LED_YEL_CAR, LED_RED_CAR, LED_RED_PPL, LED_GREEN_PPL;
-int caso=1, button=0, count=0, pisca=0;   	 //    EXPLICAR VARIÁVEIS?
+int caso=1, button=0, count=0, safety=0; 
 volatile uint8_t LDR;
 
 int main(void)
@@ -69,12 +69,11 @@ int main(void)
    	 }    
 
    	 else if (caso==2){
-
    		 LED_GREEN_CAR_PutVal(0);
    		 LED_YEL_CAR_PutVal(1);
    		 LED_RED_PPL_PutVal(1);
    		 
-   		 //Após 3s, muda-se o caso novamente NECESSÁRIO?
+   		 //Permanece no caso 2 por 3s até trocar para o caso 3
    		 if(count>=6){
    			 caso=3;
    			 count=0;
@@ -82,7 +81,6 @@ int main(void)
    	 }
 
    	 else if (caso==3){
-
    		 LED_YEL_CAR_PutVal(0);
    		 LED_RED_CAR_PutVal(1);
    		 LED_RED_PPL_PutVal(0);
@@ -91,11 +89,9 @@ int main(void)
    			 caso=4;
    			 count=0;
    		 }
-
    	 }
 
    	 else if (caso==4){
-
    		 LED_RED_CAR_PutVal(1);
    		 LED_GREEN_PPL_PutVal(0);
    		 if (count>=10){
@@ -104,8 +100,7 @@ int main(void)
    		 }
    	 }
 
-
-   	 else if (caso==5){
+      else if (caso==5){
    		 LED_RED_CAR_PutVal(0);
    		 LED_GREEN_CAR_PutVal(0);
    		 LED_GREEN_PPL_PutVal(0);
@@ -113,8 +108,8 @@ int main(void)
    	 }
 
    	 AD1_Measure(TRUE);   	 //Mede o valor de tensão do LDR
-
-    }
+    
+  }
 
     /*** RTOS startup code. Macro PEX_RTOS_START is defined by the RTOS component. DON'T MODIFY THIS CODE!!! ***/
 #ifdef PEX_RTOS_START
@@ -123,5 +118,3 @@ int main(void)
     /*** End of RTOS startup code.  ***/
     /*** Processor Expert end of main routine. DON'T MODIFY THIS CODE!!! ***/
 }
-
-
