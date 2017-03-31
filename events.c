@@ -5,7 +5,7 @@
 extern "C" {
 #endif
 
-extern int count, caso, button, LDR, security;
+extern int count, caso, button, LDR, safety;
 
 /* User includes (#include below this line is not maintained by Processor Expert) */
 
@@ -25,9 +25,9 @@ void TI1_OnInterrupt(void)
     }
 
     if(LDR>140){
-   	 security++;      
+   	 safety++;      
      
-     if (security>=20){     //assegura que o programa aguarde 10s depois que o LDR mudar de valor antes de ir para o caso 5
+     if (safety>=20){     //assegura que o programa aguarde 10s depois que o LDR mudar de valor antes de ir para o caso 5
    		 caso=5;
    		 LED_YEL_CAR_NegVal();
    		 count=0;
@@ -35,7 +35,7 @@ void TI1_OnInterrupt(void)
 
     } else if ((LDR<=140) && (caso==5)){ 
    	 caso=1;
-   	 security=0;
+   	 safety=0;
     }
 }
 
